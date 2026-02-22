@@ -108,19 +108,30 @@ Moving forward doesn't mean pretending it didn't matter. We help you carry loss 
 
 ## 🌍 Who Is This For?
 
-### You might benefit from griefAway if:
-- ✅ You're living abroad or away from your primary support system
-- ✅ You're experiencing grief from a breakup, friendship ending, or estrangement
-- ✅ The separation was abrupt or you lack closure
-- ✅ You have therapy but need support between sessions
-- ✅ You worry about burdening friends with your emotions
-- ✅ You want structured help processing loss at your own pace
+griefAway is for people **grieving someone who is still alive** — while living far from the people who know them best.
 
-### This app is NOT:
-- ❌ A replacement for therapy or professional help
-- ❌ Crisis intervention (if you're in crisis, please call a hotline)
-- ❌ A way to "get over it quickly"
-- ❌ For processing trauma (please seek professional support)
+### You might benefit from griefAway if:
+- ✅ You're **living overseas** or away from your usual support system (family, close friends)
+- ✅ You're grieving the loss of a **living relationship** — a romantic breakup, the end of a situationship, an estranged friend, or a family member you've lost contact with
+- ✅ The separation was **unilateral** (you were on the receiving end) or **mutual but unresolved** (the farewell didn't match the weight of the relationship)
+- ✅ This relationship **meant something real** to you, and the loss lingers — it's not a simple goodbye
+- ✅ You feel **confused** about what happened, what to feel, or what to do next
+- ✅ You **don't want to numb yourself** through drinking, drugs, or other avoidance — you want to actually process this
+- ✅ You want to find **closure** so you can feel free from the emotional weight and move on
+
+### What griefAway helps you do:
+- **Remember you are not defined by this one experience** — a breakup or estrangement is one chapter, not the whole story
+- **Understand your own needs** — what was met, what wasn't, and what that tells you about yourself
+- **Reconnect with your own value** — rediscover who you are outside of this relationship and grow from the closure process
+
+### This app is NOT for:
+- ❌ Crisis situations (if you're in crisis, please call a hotline)
+- ❌ Processing trauma such as abuse or violence (please seek specialized professional support)
+- ❌ Grieving someone who has **passed away** (this is a different kind of grief)
+- ❌ Getting a "quick fix" or skipping the emotional work
+- ❌ Reconnecting with the person — griefAway is about closure, not reconciliation
+
+> For a detailed target user definition, see [TARGET_USER.md](TARGET_USER.md).
 
 ---
 
