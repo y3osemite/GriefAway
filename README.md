@@ -44,7 +44,7 @@ Chat anytime with an AI trained in relationship loss and CBT. Get personalized g
 
 ## 🚀 Try It Now
 
-**Live Demo:** [https://darkchocolate70.github.io/ga/]
+**Live Demo:** [https://y3osemite.github.io/GriefAway/]
 
 No sign-up required. Your data stays on your device. Start your closure journey in minutes.
 
@@ -77,7 +77,7 @@ Want to run griefAway locally or contribute?
 
 ```bash
 # Clone the repository
-git clone https://darkchocolate70.github.io/ga/
+git clone https://github.com/y3osemite/GriefAway.git
 
 # Open index.html in your browser
 # That's it! No build process needed for the standalone version.
@@ -168,7 +168,7 @@ This is an alpha version and I'd love your feedback! Whether you're:
 - **A developer:** Contribute code improvements
 
 **How to provide feedback:**
-1. Try the app: https://darkchocolate70.github.io/ga/
+1. Try the app: https://y3osemite.github.io/GriefAway/
 2. Open an issue on GitHub describing your experience
 
 ---
@@ -214,7 +214,7 @@ A proper open-source license will be added once the project reaches beta.
 - Find your country's resources: https://findahelpline.com
 
 **About griefAway:**
-- GitHub Issues: https://github.com/darkchocolate70/ga/issues
+- GitHub Issues: https://github.com/y3osemite/GriefAway/issues
 - Website: [Future website]
 
 ---
