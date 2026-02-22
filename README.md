@@ -44,7 +44,7 @@ Chat anytime with an AI trained in relationship loss and CBT. Get personalized g
 
 ## 🚀 Try It Now
 
-**Live Demo:** [https://y3osemite.github.io/GriefAway/]
+**Live Demo:** https://y3osemite.github.io/GriefAway/
 
 No sign-up required. Your data stays on your device. Start your closure journey in minutes.
 
@@ -77,8 +77,7 @@ Want to run griefAway locally or contribute?
 
 ```bash
 # Clone the repository
-git clone https://github.com/y3osemite/GriefAway.git
-
+git clone https://y3osemite.github.io/GriefAway/
 # Open index.html in your browser
 # That's it! No build process needed for the standalone version.
 ```
@@ -214,7 +213,7 @@ A proper open-source license will be added once the project reaches beta.
 - Find your country's resources: https://findahelpline.com
 
 **About griefAway:**
-- GitHub Issues: https://github.com/y3osemite/GriefAway/issues
+- GitHub Issues: [https://y3osemite.github.io/GriefAway/issues](https://github.com/y3osemite/GriefAway/issues)
 - Website: [Future website]
 
 ---
