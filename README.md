@@ -38,6 +38,7 @@ Chat anytime with an AI trained in relationship loss and CBT. Get personalized g
 **📚 Books** - Curated reading with reflection space  
 **🎵 Music** - Explore songs and emotions  
 **✨ Words That Carried Me** - The words that helped get through the grief
+
 **💌 Unsent Messages** - Write what you never got to say  
 
 ---
