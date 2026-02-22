@@ -256,6 +256,9 @@
         if (currentConsole === 'breathe') {
           return <BreathConsole log={breatheLog} setLog={setBreatheLog} saveToStorage={saveToStorage} onBack={() => setCurrentConsole(null)} />;
         }
+        if (currentConsole === 'words') {
+          return <WordsConsole onBack={() => setCurrentConsole(null)} />;
+        }
         return (
           <div className="max-w-4xl mx-auto p-6">
             <button
@@ -318,7 +321,7 @@
                 { id: 'therapy', icon: Calendar, label: 'Therapy', color: 'text-green-500' },
                 { id: 'books', icon: Book, label: 'Books', color: 'text-amber-500' },
                 { id: 'music', icon: Music, label: 'Music', color: 'text-pink-500' },
-                { id: 'hope', icon: Sparkles, label: 'Hope', color: 'text-yellow-500' },
+                { id: 'words', icon: Sparkles, label: 'Words That Carried Me', color: 'text-yellow-500' },
                 { id: 'unsent', icon: Mail, label: 'Unsent Messages', color: 'text-red-500' }
               ].map(tool => {
                 const Icon = tool.icon;
@@ -543,9 +546,9 @@
             
             <div className="flex flex-col items-center mb-8">
               <div className="w-full max-w-md aspect-square mb-6 flex items-center justify-center">
-                <img 
-                  src="https://lh3.googleusercontent.com/d/1rMCa9ByZIUMWh2GdZ" 
-                  alt="Breathing exercise visualization"
+                <img
+                  src="https://media.self.com/photos/5979027b83c6610bb8c6be72/4:3/w_1600,c_limit/Deep-Breathing-Relax.gif"
+                  alt="Deep breathing exercise visualization"
                   className="w-full h-full object-contain rounded-lg"
                 />
               </div>
@@ -588,6 +591,102 @@
                 You've practiced breathing {log.length} times. Each breath brings you back to yourself.
               </div>
             )}
+          </div>
+        </div>
+      );
+    }
+
+    function WordsConsole({ onBack }) {
+      return (
+        <div className="max-w-4xl mx-auto p-6">
+          <button
+            onClick={onBack}
+            className="mb-6 flex items-center gap-2 text-gray-600 hover:text-gray-800 px-3 py-2 hover:bg-gray-100 rounded-lg transition-colors"
+          >
+            <span>←</span> <span>Back to Chat</span>
+          </button>
+
+          <div className="mb-6">
+            <h2 className="text-2xl font-semibold text-gray-800 mb-2">Words That Carried Me</h2>
+            <p className="text-gray-600">The words that helped me get through. Read them when you need reminding.</p>
+          </div>
+
+          {/* Read This 3x — abundance alchemist */}
+          <div className="bg-white rounded-2xl border border-gray-200 p-8 mb-6">
+            <div className="text-center mb-6">
+              <span className="inline-block bg-yellow-100 text-yellow-700 text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full">Read This 3x</span>
+            </div>
+            <div className="text-gray-800 leading-relaxed space-y-4 text-base">
+              <p>Nothing in your life has been random. Not the person who broke your heart. Not the job that ended. Not the door that closed without warning. Not even the moments you still don't fully understand.</p>
+              <p>You think you were unlucky. You think you chose wrong. You think you should have seen it coming. But every encounter exposed something. Every ending revealed something. Every disappointment stripped something back.</p>
+              <p>Some people arrived to awaken you. Some arrived to test your boundaries. Some arrived to show you exactly what you will never tolerate again. And yes, some came to hurt you. But even that pain carved clarity. Even that loss sharpened your self-worth. You weren't being punished. You were being refined.</p>
+              <p>Growth rarely feels graceful while it's happening. It feels like confusion. It feels like loss. It feels like the ground shifting under your feet. But nothing was wasted. Every lesson stretched your capacity. Every fracture widened your heart. Every time you chose to keep going, something stronger in you took shape.</p>
+              <p>Stop labeling your story as good or bad. It was necessary. It was forming you. Trust the unfolding. Trust the timing. Trust that the same force that dismantled what no longer fit is the one building what does.</p>
+              <p className="font-medium">Life is not happening against you. It is happening <em>through</em> you. And you are becoming exactly who you were meant to be.</p>
+            </div>
+            <p className="text-right text-sm text-gray-500 mt-6 italic">— abundance alchemist</p>
+          </div>
+
+          {/* Growing Around Grief — Lois Tonkin, 1996 */}
+          <div className="bg-white rounded-2xl border border-gray-200 p-8 mb-6">
+            <h3 className="text-xl font-semibold text-gray-800 text-center mb-8">Growing Around Grief</h3>
+
+            {/* What people think */}
+            <div className="mb-10">
+              <p className="text-sm text-gray-500 text-center mb-4 italic">People think that grief slowly gets smaller with time</p>
+              <div className="flex items-end justify-center gap-3 md:gap-5">
+                {[
+                  { grief: 70, label: true },
+                  { grief: 55 },
+                  { grief: 40 },
+                  { grief: 26 },
+                  { grief: 14 }
+                ].map((stage, i) => (
+                  <div key={i} className="flex flex-col items-center">
+                    <div
+                      className="rounded-full bg-gray-700 flex items-center justify-center"
+                      style={{ width: `${stage.grief}px`, height: `${stage.grief}px` }}
+                    >
+                      {stage.label && <span className="text-white text-xs font-medium">grief</span>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="border-t border-gray-200 my-8"></div>
+
+            {/* What actually happens */}
+            <div>
+              <p className="text-sm text-gray-500 text-center mb-4 italic">In reality, grief stays the same size but slowly life begins to grow bigger around it</p>
+              <div className="flex items-end justify-center gap-3 md:gap-5">
+                {[
+                  { container: 72, grief: 68, label: true },
+                  { container: 88, grief: 50 },
+                  { container: 104, grief: 50 },
+                  { container: 120, grief: 50 },
+                  { container: 140, grief: 50 }
+                ].map((stage, i) => (
+                  <div key={i} className="flex flex-col items-center">
+                    <div
+                      className="rounded-full bg-yellow-100 border-2 border-yellow-400 flex items-center justify-center"
+                      style={{ width: `${stage.container}px`, height: `${stage.container}px` }}
+                    >
+                      <div
+                        className="rounded-full bg-gray-700 flex items-center justify-center"
+                        style={{ width: `${stage.grief}px`, height: `${stage.grief}px` }}
+                      >
+                        {stage.label && <span className="text-white text-xs font-medium">grief</span>}
+                      </div>
+                    </div>
+                    {i === 4 && <span className="text-xs text-yellow-600 mt-2 font-medium">life</span>}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <p className="text-right text-sm text-gray-500 mt-8 italic">— Lois Tonkin, 1996</p>
+            <p className="text-right text-xs text-gray-400 mt-1">via whatsyourgrief.com</p>
           </div>
         </div>
       );
