@@ -118,7 +118,7 @@
       const messagesEndRef = useRef(null);
       
       const onboardingQuestions = [
-        { field: 'userName', question: "Welcome to griefAway.\n\nYou're here because you're facing grief while away—perhaps abroad, perhaps just distant from your support system. The loss of an important relationship, whether through a breakup, estrangement, or separation, leaves us without closure when the farewell was abrupt or incomplete.\n\nThis app exists to help you create that closure for yourself. Not by erasing the memory or pretending it didn't matter, but by transcending the grief—processing it fully, understanding what it meant, and choosing to move forward while honoring what was.\n\nClosure is an act of self-compassion. It's how we carry loss without being consumed by it.\n\nI'll guide you through this process. First, I need to understand your situation. Let's begin with you—what's your name?" },
+        { field: 'userName', question: "Welcome to griefAway.\n\nYou're here because you're grieving someone who is still alive—a breakup, the end of a situationship, an estranged friend, or a family member you've lost contact with—while living far from the people who know you best.\n\nMaybe the separation was their decision. Maybe it was mutual but the farewell didn't match the weight of what you shared. Either way, it lingers. And being overseas or away from your support system makes it harder to process.\n\nThis app exists to help you find closure. Not by erasing the memory or pretending it didn't matter, but by helping you understand what happened, reconnect with who you are beyond this one experience, and move forward with clarity.\n\nYou are not defined by this breakup or estrangement. It's one chapter, not the whole story.\n\nI'll guide you through this process. First, I need to understand your situation. Let's begin with you—what's your name?" },
         { field: 'livingSituation', question: "Are you currently living alone, or are you sharing your space with others—roommates, family, or a partner?" },
         { field: 'livingAbroad', question: "Are you living away from where you grew up or where your primary support system is? This distance can make processing loss feel more isolating." },
         { field: 'routine', question: "Do you maintain a regular daily structure—work, studies, or other commitments that anchor your day-to-day life?" },
@@ -233,7 +233,7 @@
             saveToStorage('onboarding-complete', true);
             
             addBotMessage(
-              `Thank you for trusting me with your story${userProfile.userName ? ', ' + userProfile.userName : ''}. I know this wasn't easy to articulate.\n\nYou've completed the first and most important step: acknowledging what happened and naming what it means to you. This kind of honesty takes courage.\n\nNow we begin the work of closure. Closure doesn't mean forgetting or diminishing what this relationship was. It means integrating the loss—processing the emotions, understanding the unmet needs, and ultimately choosing to move forward while still honoring what mattered.\n\nI'm going to guide you through structured exercises designed to help you reach that point. We'll move at your pace. You can access different tools from the sidebar whenever you need them—journaling, reflection exercises, ways to process difficult emotions.\n\nWhen you're ready to begin, just let me know. Or if you want to talk about what you're feeling right now, I'm here for that too.`,
+              `Thank you for trusting me with your story${userProfile.userName ? ', ' + userProfile.userName : ''}. I know this wasn't easy to articulate.\n\nYou've completed the first and most important step: acknowledging what happened and naming what it means to you. This kind of honesty takes courage.\n\nNow we begin the work of closure. Here's what we'll focus on together:\n\n1. Reminding you that you are not defined by this one experience. This breakup or estrangement is one chapter of your life, not the whole story.\n\n2. Helping you understand your own needs—what was being met in this relationship, what wasn't, and what that tells you about yourself.\n\n3. Reconnecting you with your own value—rediscovering who you are outside of this relationship and growing from the closure process itself.\n\nYou can access different tools from the sidebar whenever you need them—journaling, breathing exercises, unsent letters, and more. We'll move at your pace.\n\nWhen you're ready to begin, just let me know. Or if you want to talk about what you're feeling right now, I'm here for that too.`,
               1000
             );
           }
@@ -255,6 +255,9 @@
         }
         if (currentConsole === 'breathe') {
           return <BreathConsole log={breatheLog} setLog={setBreatheLog} saveToStorage={saveToStorage} onBack={() => setCurrentConsole(null)} />;
+        }
+        if (currentConsole === 'words') {
+          return <WordsConsole onBack={() => setCurrentConsole(null)} />;
         }
         return (
           <div className="max-w-4xl mx-auto p-6">
@@ -318,7 +321,7 @@
                 { id: 'therapy', icon: Calendar, label: 'Therapy', color: 'text-green-500' },
                 { id: 'books', icon: Book, label: 'Books', color: 'text-amber-500' },
                 { id: 'music', icon: Music, label: 'Music', color: 'text-pink-500' },
-                { id: 'hope', icon: Sparkles, label: 'Hope', color: 'text-yellow-500' },
+                { id: 'words', icon: Sparkles, label: 'Words That Carried Me', color: 'text-yellow-500' },
                 { id: 'unsent', icon: Mail, label: 'Unsent Messages', color: 'text-red-500' }
               ].map(tool => {
                 const Icon = tool.icon;
@@ -376,7 +379,7 @@
                       <div className="text-center py-12">
                         <Heart className="w-16 h-16 text-rose-400 mx-auto mb-4" />
                         <h2 className="text-2xl font-semibold text-gray-800 mb-2">Welcome to griefAway</h2>
-                        <p className="text-gray-600">I'm here to help you find closure and move forward.</p>
+                        <p className="text-gray-600">For when you're grieving someone who's still alive — far from the people who know you best.</p>
                       </div>
                     )}
 
@@ -543,9 +546,9 @@
             
             <div className="flex flex-col items-center mb-8">
               <div className="w-full max-w-md aspect-square mb-6 flex items-center justify-center">
-                <img 
-                  src="https://lh3.googleusercontent.com/d/1rMCa9ByZIUMWh2GdZ" 
-                  alt="Breathing exercise visualization"
+                <img
+                  src="https://media.self.com/photos/5979027b83c6610bb8c6be72/4:3/w_1600,c_limit/Deep-Breathing-Relax.gif"
+                  alt="Deep breathing exercise visualization"
                   className="w-full h-full object-contain rounded-lg"
                 />
               </div>
@@ -588,6 +591,102 @@
                 You've practiced breathing {log.length} times. Each breath brings you back to yourself.
               </div>
             )}
+          </div>
+        </div>
+      );
+    }
+
+    function WordsConsole({ onBack }) {
+      return (
+        <div className="max-w-4xl mx-auto p-6">
+          <button
+            onClick={onBack}
+            className="mb-6 flex items-center gap-2 text-gray-600 hover:text-gray-800 px-3 py-2 hover:bg-gray-100 rounded-lg transition-colors"
+          >
+            <span>←</span> <span>Back to Chat</span>
+          </button>
+
+          <div className="mb-6">
+            <h2 className="text-2xl font-semibold text-gray-800 mb-2">Words That Carried Me</h2>
+            <p className="text-gray-600">The words that helped me get through. Read them when you need reminding.</p>
+          </div>
+
+          {/* Read This 3x — abundance alchemist */}
+          <div className="bg-white rounded-2xl border border-gray-200 p-8 mb-6">
+            <div className="text-center mb-6">
+              <span className="inline-block bg-yellow-100 text-yellow-700 text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full">Read This 3x</span>
+            </div>
+            <div className="text-gray-800 leading-relaxed space-y-4 text-base">
+              <p>Nothing in your life has been random. Not the person who broke your heart. Not the job that ended. Not the door that closed without warning. Not even the moments you still don't fully understand.</p>
+              <p>You think you were unlucky. You think you chose wrong. You think you should have seen it coming. But every encounter exposed something. Every ending revealed something. Every disappointment stripped something back.</p>
+              <p>Some people arrived to awaken you. Some arrived to test your boundaries. Some arrived to show you exactly what you will never tolerate again. And yes, some came to hurt you. But even that pain carved clarity. Even that loss sharpened your self-worth. You weren't being punished. You were being refined.</p>
+              <p>Growth rarely feels graceful while it's happening. It feels like confusion. It feels like loss. It feels like the ground shifting under your feet. But nothing was wasted. Every lesson stretched your capacity. Every fracture widened your heart. Every time you chose to keep going, something stronger in you took shape.</p>
+              <p>Stop labeling your story as good or bad. It was necessary. It was forming you. Trust the unfolding. Trust the timing. Trust that the same force that dismantled what no longer fit is the one building what does.</p>
+              <p className="font-medium">Life is not happening against you. It is happening <em>through</em> you. And you are becoming exactly who you were meant to be.</p>
+            </div>
+            <p className="text-right text-sm text-gray-500 mt-6 italic">— abundance alchemist</p>
+          </div>
+
+          {/* Growing Around Grief — Lois Tonkin, 1996 */}
+          <div className="bg-white rounded-2xl border border-gray-200 p-8 mb-6">
+            <h3 className="text-xl font-semibold text-gray-800 text-center mb-8">Growing Around Grief</h3>
+
+            {/* What people think */}
+            <div className="mb-10">
+              <p className="text-sm text-gray-500 text-center mb-4 italic">People think that grief slowly gets smaller with time</p>
+              <div className="flex items-end justify-center gap-3 md:gap-5">
+                {[
+                  { grief: 70, label: true },
+                  { grief: 55 },
+                  { grief: 40 },
+                  { grief: 26 },
+                  { grief: 14 }
+                ].map((stage, i) => (
+                  <div key={i} className="flex flex-col items-center">
+                    <div
+                      className="rounded-full bg-gray-700 flex items-center justify-center"
+                      style={{ width: `${stage.grief}px`, height: `${stage.grief}px` }}
+                    >
+                      {stage.label && <span className="text-white text-xs font-medium">grief</span>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="border-t border-gray-200 my-8"></div>
+
+            {/* What actually happens */}
+            <div>
+              <p className="text-sm text-gray-500 text-center mb-4 italic">In reality, grief stays the same size but slowly life begins to grow bigger around it</p>
+              <div className="flex items-end justify-center gap-3 md:gap-5">
+                {[
+                  { container: 72, grief: 68, label: true },
+                  { container: 88, grief: 50 },
+                  { container: 104, grief: 50 },
+                  { container: 120, grief: 50 },
+                  { container: 140, grief: 50 }
+                ].map((stage, i) => (
+                  <div key={i} className="flex flex-col items-center">
+                    <div
+                      className="rounded-full bg-yellow-100 border-2 border-yellow-400 flex items-center justify-center"
+                      style={{ width: `${stage.container}px`, height: `${stage.container}px` }}
+                    >
+                      <div
+                        className="rounded-full bg-gray-700 flex items-center justify-center"
+                        style={{ width: `${stage.grief}px`, height: `${stage.grief}px` }}
+                      >
+                        {stage.label && <span className="text-white text-xs font-medium">grief</span>}
+                      </div>
+                    </div>
+                    {i === 4 && <span className="text-xs text-yellow-600 mt-2 font-medium">life</span>}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <p className="text-right text-sm text-gray-500 mt-8 italic">— Lois Tonkin, 1996</p>
+            <p className="text-right text-xs text-gray-400 mt-1">via whatsyourgrief.com</p>
           </div>
         </div>
       );
