@@ -118,7 +118,7 @@
       const messagesEndRef = useRef(null);
       
       const onboardingQuestions = [
-        { field: 'userName', question: "Welcome to griefAway.\n\nYou're here because you're facing grief while away—perhaps abroad, perhaps just distant from your support system. The loss of an important relationship, whether through a breakup, estrangement, or separation, leaves us without closure when the farewell was abrupt or incomplete.\n\nThis app exists to help you create that closure for yourself. Not by erasing the memory or pretending it didn't matter, but by transcending the grief—processing it fully, understanding what it meant, and choosing to move forward while honoring what was.\n\nClosure is an act of self-compassion. It's how we carry loss without being consumed by it.\n\nI'll guide you through this process. First, I need to understand your situation. Let's begin with you—what's your name?" },
+        { field: 'userName', question: "Welcome to griefAway.\n\nYou're here because you're grieving someone who is still alive—a breakup, the end of a situationship, an estranged friend, or a family member you've lost contact with—while living far from the people who know you best.\n\nMaybe the separation was their decision. Maybe it was mutual but the farewell didn't match the weight of what you shared. Either way, it lingers. And being overseas or away from your support system makes it harder to process.\n\nThis app exists to help you find closure. Not by erasing the memory or pretending it didn't matter, but by helping you understand what happened, reconnect with who you are beyond this one experience, and move forward with clarity.\n\nYou are not defined by this breakup or estrangement. It's one chapter, not the whole story.\n\nI'll guide you through this process. First, I need to understand your situation. Let's begin with you—what's your name?" },
         { field: 'livingSituation', question: "Are you currently living alone, or are you sharing your space with others—roommates, family, or a partner?" },
         { field: 'livingAbroad', question: "Are you living away from where you grew up or where your primary support system is? This distance can make processing loss feel more isolating." },
         { field: 'routine', question: "Do you maintain a regular daily structure—work, studies, or other commitments that anchor your day-to-day life?" },
@@ -233,7 +233,7 @@
             saveToStorage('onboarding-complete', true);
             
             addBotMessage(
-              `Thank you for trusting me with your story${userProfile.userName ? ', ' + userProfile.userName : ''}. I know this wasn't easy to articulate.\n\nYou've completed the first and most important step: acknowledging what happened and naming what it means to you. This kind of honesty takes courage.\n\nNow we begin the work of closure. Closure doesn't mean forgetting or diminishing what this relationship was. It means integrating the loss—processing the emotions, understanding the unmet needs, and ultimately choosing to move forward while still honoring what mattered.\n\nI'm going to guide you through structured exercises designed to help you reach that point. We'll move at your pace. You can access different tools from the sidebar whenever you need them—journaling, reflection exercises, ways to process difficult emotions.\n\nWhen you're ready to begin, just let me know. Or if you want to talk about what you're feeling right now, I'm here for that too.`,
+              `Thank you for trusting me with your story${userProfile.userName ? ', ' + userProfile.userName : ''}. I know this wasn't easy to articulate.\n\nYou've completed the first and most important step: acknowledging what happened and naming what it means to you. This kind of honesty takes courage.\n\nNow we begin the work of closure. Here's what we'll focus on together:\n\n1. Reminding you that you are not defined by this one experience. This breakup or estrangement is one chapter of your life, not the whole story.\n\n2. Helping you understand your own needs—what was being met in this relationship, what wasn't, and what that tells you about yourself.\n\n3. Reconnecting you with your own value—rediscovering who you are outside of this relationship and growing from the closure process itself.\n\nYou can access different tools from the sidebar whenever you need them—journaling, breathing exercises, unsent letters, and more. We'll move at your pace.\n\nWhen you're ready to begin, just let me know. Or if you want to talk about what you're feeling right now, I'm here for that too.`,
               1000
             );
           }
@@ -376,7 +376,7 @@
                       <div className="text-center py-12">
                         <Heart className="w-16 h-16 text-rose-400 mx-auto mb-4" />
                         <h2 className="text-2xl font-semibold text-gray-800 mb-2">Welcome to griefAway</h2>
-                        <p className="text-gray-600">I'm here to help you find closure and move forward.</p>
+                        <p className="text-gray-600">For when you're grieving someone who's still alive — far from the people who know you best.</p>
                       </div>
                     )}
 
