@@ -256,6 +256,9 @@
         if (currentConsole === 'breathe') {
           return <BreathConsole log={breatheLog} setLog={setBreatheLog} saveToStorage={saveToStorage} onBack={() => setCurrentConsole(null)} />;
         }
+        if (currentConsole === 'therapy') {
+          return <TherapyConsole onBack={() => setCurrentConsole(null)} />;
+        }
         if (currentConsole === 'words') {
           return <WordsConsole onBack={() => setCurrentConsole(null)} />;
         }
@@ -510,27 +513,6 @@
     }
 
     function BreathConsole({ log, setLog, saveToStorage, onBack }) {
-      const [sessionActive, setSessionActive] = useState(false);
-      const [sessionTime, setSessionTime] = useState(0);
-
-      useEffect(() => {
-        let interval;
-        if (sessionActive) {
-          interval = setInterval(() => {
-            setSessionTime(prev => prev + 1);
-          }, 1000);
-        }
-        return () => clearInterval(interval);
-      }, [sessionActive]);
-
-      const handleComplete = () => {
-        setSessionActive(false);
-        const newLog = [...log, { timestamp: new Date().toISOString(), duration: sessionTime }];
-        setLog(newLog);
-        saveToStorage('breathe-log', newLog);
-        setSessionTime(0);
-      };
-
       return (
         <div className="max-w-4xl mx-auto p-6">
           <button
@@ -543,40 +525,28 @@
           <div className="bg-white rounded-2xl border border-gray-200 p-8">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">Breathe</h2>
             <p className="text-gray-600 mb-8">Follow the breathing pattern to calm your nervous system and center yourself.</p>
-            
+
             <div className="flex flex-col items-center mb-8">
-              <div className="w-full max-w-md aspect-square mb-6 flex items-center justify-center">
+              <div className="w-full max-w-md aspect-square mb-4 flex items-center justify-center">
                 <img
                   src="https://media.self.com/photos/5979027b83c6610bb8c6be72/4:3/w_1600,c_limit/Deep-Breathing-Relax.gif"
                   alt="Deep breathing exercise visualization"
                   className="w-full h-full object-contain rounded-lg"
                 />
               </div>
-              
-              <p className="text-gray-700 text-center mb-6">
-                Inhale for 4 seconds, hold for 7 seconds, exhale for 8 seconds. Repeat.
+              <p className="text-xs text-gray-400 mb-6">
+                Source: <a href="https://www.self.com/story/this-calming-gif-can-help-you-handle-stress" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600">Self.com</a>
               </p>
+            </div>
 
-              {!sessionActive ? (
-                <button
-                  onClick={() => setSessionActive(true)}
-                  className="px-8 py-3 bg-teal-500 text-white rounded-xl font-semibold hover:bg-teal-600 transition-colors"
-                >
-                  Start Breathing Exercise
-                </button>
-              ) : (
-                <div className="text-center">
-                  <p className="text-lg text-gray-700 mb-4">
-                    Session time: {Math.floor(sessionTime / 60)}:{(sessionTime % 60).toString().padStart(2, '0')}
-                  </p>
-                  <button
-                    onClick={handleComplete}
-                    className="px-8 py-3 bg-gray-600 text-white rounded-xl font-semibold hover:bg-gray-700 transition-colors"
-                  >
-                    Complete Session
-                  </button>
-                </div>
-              )}
+            <div className="bg-teal-50 rounded-xl p-6 mb-6">
+              <h3 className="font-semibold text-gray-800 mb-4">Why Breathing Matters</h3>
+              <div className="text-gray-700 text-sm space-y-3">
+                <p>Your breath is the most fundamental sign that you are alive. When grief pulls you into spiraling thoughts about the past or anxiety about the future, pausing to breathe brings you back to this moment — the one where you exist, where your heart is beating, where your body is carrying you forward.</p>
+                <p>Conscious breathing rechannels your energy. When you're overwhelmed, your body activates its fight-or-flight response — your heart races, your muscles tense, your mind loops. Intentional breathing activates your parasympathetic nervous system, shifting you from survival mode into rest-and-restore. It's not about suppressing what you feel. It's about creating the space to feel it without being consumed by it.</p>
+                <p>When you focus on your breath, you focus on yourself. You focus on the fact that you're alive. You feel your body — your chest expanding, your shoulders softening, the air entering and leaving. This isn't avoidance. It's the opposite. You're sending a signal to your entire being: <em>I am here. I am present. I choose to be with myself right now.</em></p>
+                <p>Research shows that even a few minutes of slow, conscious breathing can lower cortisol levels, reduce anxiety, improve mood, and sharpen mental clarity. It's one of the simplest and most powerful things you can do for yourself — and you can do it anywhere, anytime.</p>
+              </div>
             </div>
 
             <div className="bg-teal-50 rounded-xl p-6">
@@ -591,6 +561,116 @@
                 You've practiced breathing {log.length} times. Each breath brings you back to yourself.
               </div>
             )}
+          </div>
+        </div>
+      );
+    }
+
+    function TherapyConsole({ onBack }) {
+      return (
+        <div className="max-w-4xl mx-auto p-6">
+          <button
+            onClick={onBack}
+            className="mb-6 flex items-center gap-2 text-gray-600 hover:text-gray-800 px-3 py-2 hover:bg-gray-100 rounded-lg transition-colors"
+          >
+            <span>←</span> <span>Back to Chat</span>
+          </button>
+
+          <div className="mb-6">
+            <h2 className="text-2xl font-semibold text-gray-800 mb-2">Therapy</h2>
+            <p className="text-gray-600">Professional support for your journey forward.</p>
+          </div>
+
+          {/* Personal anecdote & professional help messaging */}
+          <div className="bg-white rounded-2xl border border-gray-200 p-8 mb-6">
+            <div className="bg-green-50 rounded-xl p-6 mb-6">
+              <p className="text-gray-700 text-sm italic leading-relaxed mb-3">"I'm not your family, I'm not your friend, but I'm here to support you."</p>
+              <p className="text-gray-500 text-xs">— A therapist's words that changed everything</p>
+            </div>
+            <div className="text-gray-700 text-sm space-y-3">
+              <p>My therapist said that to me, and it stopped me in my tracks. It wasn't a cold statement — it was a clarifying one. Here was someone whose entire role was to walk beside me through the hardest parts of my life, with no obligation other than genuine care for my wellbeing. I wasn't truly alone in this world. And neither are you.</p>
+              <p>That realization — that there are people trained and ready to help you navigate grief, loss, and the disorientation that follows — was a turning point. It made me believe I could get better. And I did.</p>
+              <p>Seeking professional help is not a sign of weakness. It is one of the strongest, most resilient things you can do for yourself. It takes courage to say "I need support" and then actually reach out for it. A therapist's job is to help you walk this journey together — at your pace, with your story, toward your healing.</p>
+              <p>Professional therapy offers long-term, sustainable improvement. While this app is here for you in the moments between sessions — to journal, to breathe, to find words that carry you — it works best as a complement to real human connection with a trained professional, whether in person or online. Use both together.</p>
+            </div>
+          </div>
+
+          {/* Insurance & EAP info */}
+          <div className="bg-white rounded-2xl border border-gray-200 p-8 mb-6">
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">Reducing the Financial Burden</h3>
+            <div className="text-gray-700 text-sm space-y-3">
+              <p>Therapy can feel expensive, but there are ways to make it more accessible:</p>
+              <div className="bg-gray-50 rounded-xl p-5 space-y-3">
+                <div>
+                  <p className="font-medium text-gray-800">Check your health insurance</p>
+                  <p className="text-gray-600 text-sm">Many insurance plans cover mental health services. Your plan may reimburse some or all of your counseling sessions. Contact your insurance provider to understand your coverage.</p>
+                </div>
+                <div className="border-t border-gray-200 pt-3">
+                  <p className="font-medium text-gray-800">Ask about your company's EAP</p>
+                  <p className="text-gray-600 text-sm">If you're employed, your company may offer an Employee Assistance Program (EAP). EAPs typically cover a set number of free, confidential counseling sessions — often 6 to 12 per year. This is a benefit you've already earned. Use it.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* EAP Providers */}
+          <div className="bg-white rounded-2xl border border-gray-200 p-8 mb-6">
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">EAP Therapy Providers</h3>
+            <p className="text-gray-500 text-sm mb-4">These platforms partner with employers to provide therapy through Employee Assistance Programs.</p>
+            <div className="space-y-4">
+              <a href="https://www.lyrahealth.com/" target="_blank" rel="noopener noreferrer" className="block bg-gray-50 rounded-xl p-5 hover:bg-gray-100 transition-colors">
+                <p className="font-medium text-gray-800">Lyra Health</p>
+                <p className="text-gray-600 text-sm mt-1">Evidence-based mental health care through employer-sponsored EAP programs. Check if your employer partners with Lyra.</p>
+                <p className="text-green-600 text-xs mt-2">lyrahealth.com</p>
+              </a>
+              <a href="https://www.springhealth.com/" target="_blank" rel="noopener noreferrer" className="block bg-gray-50 rounded-xl p-5 hover:bg-gray-100 transition-colors">
+                <p className="font-medium text-gray-800">Spring Health</p>
+                <p className="text-gray-600 text-sm mt-1">Personalized mental health benefits provided through your employer. Offers therapy, coaching, and self-guided resources.</p>
+                <p className="text-green-600 text-xs mt-2">springhealth.com</p>
+              </a>
+            </div>
+          </div>
+
+          {/* Free & Non-EAP support */}
+          <div className="bg-white rounded-2xl border border-gray-200 p-8 mb-6">
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">Free Support — Real Humans, No Cost</h3>
+            <p className="text-gray-500 text-sm mb-4">You don't need insurance or money to talk to someone. These services provide free support through phone, text, or online chat.</p>
+            <div className="space-y-4">
+              <a href="https://www.samaritans.org/ireland/samaritans-ireland/" target="_blank" rel="noopener noreferrer" className="block bg-gray-50 rounded-xl p-5 hover:bg-gray-100 transition-colors">
+                <p className="font-medium text-gray-800">Samaritans Ireland</p>
+                <p className="text-gray-600 text-sm mt-1">Free emotional support available 24/7 by phone or in-person at local branches. You don't have to be suicidal to reach out — they're there for anyone struggling.</p>
+                <p className="text-green-600 text-xs mt-2">samaritans.org</p>
+              </a>
+              <div className="block bg-gray-50 rounded-xl p-5">
+                <p className="font-medium text-gray-800">988 Suicide & Crisis Lifeline</p>
+                <p className="text-gray-600 text-sm mt-1">Call or text <span className="font-semibold">988</span> to connect with a trained counselor. Free, confidential, 24/7. Available in the US.</p>
+                <p className="text-green-600 text-xs mt-2">988lifeline.org</p>
+              </div>
+              <div className="block bg-gray-50 rounded-xl p-5">
+                <p className="font-medium text-gray-800">Crisis Text Line</p>
+                <p className="text-gray-600 text-sm mt-1">Text <span className="font-semibold">HOME</span> to <span className="font-semibold">741741</span> for free, 24/7 crisis support via text message. Available in the US.</p>
+                <p className="text-green-600 text-xs mt-2">crisistextline.org</p>
+              </div>
+              <a href="https://www.befrienders.org/" target="_blank" rel="noopener noreferrer" className="block bg-gray-50 rounded-xl p-5 hover:bg-gray-100 transition-colors">
+                <p className="font-medium text-gray-800">Befrienders Worldwide</p>
+                <p className="text-gray-600 text-sm mt-1">An international directory of emotional support helplines. Search by your country to find local services near you.</p>
+                <p className="text-green-600 text-xs mt-2">befrienders.org</p>
+              </a>
+              <a href="https://www.7cups.com/" target="_blank" rel="noopener noreferrer" className="block bg-gray-50 rounded-xl p-5 hover:bg-gray-100 transition-colors">
+                <p className="font-medium text-gray-800">7 Cups</p>
+                <p className="text-gray-600 text-sm mt-1">Free online chat with trained volunteer listeners, available 24/7. A good option when you need someone to listen without judgment.</p>
+                <p className="text-green-600 text-xs mt-2">7cups.com</p>
+              </a>
+              <a href="https://findahelpline.com/" target="_blank" rel="noopener noreferrer" className="block bg-gray-50 rounded-xl p-5 hover:bg-gray-100 transition-colors">
+                <p className="font-medium text-gray-800">Find A Helpline</p>
+                <p className="text-gray-600 text-sm mt-1">Search verified helplines across 175+ countries. Filter by topic — grief, anxiety, loneliness, and more — to find the right support for you.</p>
+                <p className="text-green-600 text-xs mt-2">findahelpline.com</p>
+              </a>
+            </div>
+          </div>
+
+          <div className="bg-green-50 rounded-xl p-6 text-center">
+            <p className="text-gray-700 text-sm">You don't have to walk this path alone. Reaching out is not a sign of weakness — it's proof of your strength.</p>
           </div>
         </div>
       );
